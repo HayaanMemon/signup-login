@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+    <header class="header">
+        <a href="#" class="logo">Login</a>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#service">Service</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact">Contact</a>
+
+        </nav>
+
+    </header>
+
+
+    <div class="Login">
+        <h1>Login</h1>
+        <center>
+            <form class="form">
+                <input type="text" id="email" placeholder="email"><br>
+                <input type="text" id="password" placeholder="password"><br>
+                <button type="submit" value="submit" id="submit">Login</button>
+
+            </form>
+        </center>
+    </div>
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getDatabase, ref, set, get, child } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+
+
+
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC44Envuc3vfhXQvk5eJ4dbA9uCKIrlNeI",
+            authDomain: "test-b9f9a.firebaseapp.com",
+            projectId: "test-b9f9a",
+            storageBucket: "test-b9f9a.appspot.com",
+            messagingSenderId: "118407037008",
+            appId: "1:118407037008:web:76effb4c4f794a3d8b9155"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        
+        
+         var email= document.getElementById('email').value
+           var  password= document.getElementById('password').value
+        
+        document.getElementById('submit').addEventListener('click', function (e) {
+            e.preventDefault();
+            
+
+
+
+            const auth = getAuth();
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Signed in 
+                    const user = userCredential.user;
+
+                    email:email
+                    password:password
+
+                    // ...
+                })
+
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                });
+                
+            alert('Sucessfuly');
+
+        })
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
